@@ -2,6 +2,8 @@
 name = "portal-pc-asm-common"
 version = "0.1.0"
 edition = "2021"
+description = "Common types and traits for assembly rewriting"
+license = "CC0-1.0"
 
 [dependencies]
 array-init = "2.1.0"
