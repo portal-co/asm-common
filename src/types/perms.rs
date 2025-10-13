@@ -29,6 +29,25 @@ impl<T> Perms<T> {
             nj: f(nj),
         }
     }
+    pub fn try_map<U, E>(self, mut f: impl FnMut(T) -> Result<U, E>) -> Result<Perms<U>, E> {
+        let Perms { r, w, x, nj } = self;
+        Ok(Perms {
+            r: f(r)?,
+            w: f(w)?,
+            x: f(x)?,
+            nj: f(nj)?,
+        })
+    }
+    pub fn as_ref<'a>(&'a self) -> Perms<&'a T> {
+        match self {
+            Perms { r, w, x, nj } => Perms { r, w, x, nj },
+        }
+    }
+    pub fn as_mut<'a>(&'a mut self) -> Perms<&'a mut T> {
+        match self {
+            Perms { r, w, x, nj } => Perms { r, w, x, nj },
+        }
+    }
 }
 #[cfg(feature = "enum-map")]
 const _: () = {
