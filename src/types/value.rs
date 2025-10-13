@@ -69,6 +69,20 @@ impl<G> Value<G> {
             bitness: self.bitness,
         }
     }
+    pub fn as_ref<'a>(&'a self) -> Value<&'a G> {
+        Value {
+            offset: &self.offset,
+            bitness: self.bitness,
+        }
+    }
+    pub fn map<G2, E>(self, f: &mut (dyn FnMut(G) -> Result<G2, E> + '_)) -> Result<Value<G2>, E> {
+        Ok(match self {
+            Value { offset, bitness } => Value {
+                offset: f(offset)?,
+                bitness,
+            },
+        })
+    }
 }
 
 #[derive(PartialEq, PartialOrd, Eq, Ord, Clone, Copy)]
@@ -83,6 +97,61 @@ pub enum LoadStoreFrame<G> {
         bits: Bitness,
         constant: Constant,
     },
+}
+impl<G> LoadStoreFrame<G> {
+    pub fn map<G2, E>(
+        self,
+        f: &mut (dyn FnMut(G) -> Result<G2, E> + '_),
+    ) -> Result<LoadStoreFrame<G2>, E> {
+        Ok(match self {
+            LoadStoreFrame::Value {
+                bits,
+                val,
+                bit_offset,
+            } => LoadStoreFrame::Value {
+                bits,
+                val: val.map(f)?,
+                bit_offset,
+            },
+            LoadStoreFrame::Constant { bits, constant } => {
+                LoadStoreFrame::Constant { bits, constant }
+            }
+        })
+    }
+    pub fn as_ref<'a>(&'a self) -> LoadStoreFrame<&'a G> {
+        match self {
+            LoadStoreFrame::Value {
+                bits,
+                val,
+                bit_offset,
+            } => LoadStoreFrame::Value {
+                bits: *bits,
+                val: val.as_ref(),
+                bit_offset: *bit_offset,
+            },
+            LoadStoreFrame::Constant { bits, constant } => LoadStoreFrame::Constant {
+                bits: *bits,
+                constant: *constant,
+            },
+        }
+    }
+    pub fn as_mut<'a>(&'a mut self) -> LoadStoreFrame<&'a mut G> {
+        match self {
+            LoadStoreFrame::Value {
+                bits,
+                val,
+                bit_offset,
+            } => LoadStoreFrame::Value {
+                bits: *bits,
+                val: val.as_mut(),
+                bit_offset: *bit_offset,
+            },
+            LoadStoreFrame::Constant { bits, constant } => LoadStoreFrame::Constant {
+                bits: *bits,
+                constant: *constant,
+            },
+        }
+    }
 }
 
 pub trait Any: Iterator {}
