@@ -61,7 +61,6 @@ pub struct Value<G> {
     pub offset: G,
     pub bitness: Bitness,
 }
-
 impl<G> Value<G> {
     pub fn as_mut<'a>(&'a mut self) -> Value<&'a mut G> {
         Value {
@@ -84,7 +83,6 @@ impl<G> Value<G> {
         })
     }
 }
-
 #[derive(PartialEq, PartialOrd, Eq, Ord, Clone, Copy)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum LoadStoreFrame<G> {
@@ -153,7 +151,6 @@ impl<G> LoadStoreFrame<G> {
         }
     }
 }
-
 pub trait Any: Iterator {}
 impl<T: Iterator + ?Sized> Any for T {}
 pub trait All: Iterator {}

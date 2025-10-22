@@ -52,7 +52,6 @@ impl<T> Perms<T> {
 #[cfg(feature = "enum-map")]
 const _: () = {
     use core::mem::{replace, MaybeUninit};
-
     impl<T, U: Into<T>> From<Perms<U>> for enum_map::EnumMap<Perm, T> {
         fn from(value: Perms<U>) -> Self {
             let value: Perms<T> = Perms {
@@ -122,7 +121,6 @@ impl<'a, T: InputStream> InputStream for &'a mut T {
 }
 impl<'a> Index<Perm> for InputRef<'a> {
     type Output = &'a BitSlice;
-
     fn index(&self, index: Perm) -> &Self::Output {
         match index {
             Perm::Read => &self.r,
@@ -218,7 +216,6 @@ const _: () = {
     use alloc::{borrow::ToOwned, vec::Vec};
     use bitvec::vec::BitVec;
     use no_error_type::NoError;
-
     impl<'a> InputRef<'a> {
         pub fn to_owned(&self) -> Input {
             Input {
