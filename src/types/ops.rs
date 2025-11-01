@@ -1,5 +1,5 @@
 use super::*;
-#[derive(PartialEq, PartialOrd, Eq, Ord, Clone, Copy)]
+#[derive(PartialEq, PartialOrd, Eq, Ord, Clone, Copy, Hash, Debug)]
 #[cfg_attr(feature = "enum-map", derive(enum_map::Enum))]
 #[cfg_attr(feature = "exhaust", derive(exhaust::Exhaust))]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
@@ -19,7 +19,7 @@ pub enum Arith {
     Rotl(Sign),
     Rotr(Sign),
 }
-#[derive(PartialEq, PartialOrd, Eq, Ord, Clone, Copy)]
+#[derive(PartialEq, PartialOrd, Eq, Ord, Clone, Copy, Hash, Debug)]
 #[cfg_attr(feature = "enum-map", derive(enum_map::Enum))]
 #[cfg_attr(feature = "exhaust", derive(exhaust::Exhaust))]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
@@ -28,7 +28,7 @@ pub enum Sign {
     Unsigned,
     Signed,
 }
-#[derive(PartialEq, PartialOrd, Eq, Ord, Clone, Copy)]
+#[derive(PartialEq, PartialOrd, Eq, Ord, Clone, Copy, Hash, Debug)]
 #[cfg_attr(feature = "enum-map", derive(enum_map::Enum))]
 #[cfg_attr(feature = "exhaust", derive(exhaust::Exhaust))]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
@@ -37,7 +37,7 @@ pub enum Endian {
     Little,
     Big,
 }
-#[derive(PartialEq, PartialOrd, Eq, Ord, Clone, Copy)]
+#[derive(PartialEq, PartialOrd, Eq, Ord, Clone, Copy, Hash, Debug)]
 #[cfg_attr(feature = "enum-map", derive(enum_map::Enum))]
 #[cfg_attr(feature = "exhaust", derive(exhaust::Exhaust))]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
@@ -46,7 +46,7 @@ pub enum Ext {
     Sign,
     Zero,
 }
-#[derive(PartialEq, PartialOrd, Eq, Ord, Clone, Copy)]
+#[derive(PartialEq, PartialOrd, Eq, Ord, Clone, Copy, Hash, Debug)]
 #[cfg_attr(feature = "enum-map", derive(enum_map::Enum))]
 #[cfg_attr(feature = "exhaust", derive(exhaust::Exhaust))]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
