@@ -4,6 +4,14 @@
 //! of pseudo-random values using SHA3-256. The ratchet can also be used to
 //! split byte slices at positions marked by ratchet-generated values.
 //!
+//! ## Purpose
+//!
+//! The ratchet is designed for marking targeted modifications to supporting code.
+//! Ratchet markers can be embedded in assembly to designate sections for special
+//! processing. Consumers can split on these markers to apply custom transformations,
+//! while the same code would crash if executed on real hardware (preventing accidental
+//! execution of marker bytes).
+//!
 //! Available only with the `ratchet` feature enabled.
 
 use core::mem::{replace, transmute};
