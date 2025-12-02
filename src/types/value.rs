@@ -38,6 +38,8 @@ pub struct Bitness {
 /// # Examples
 ///
 /// ```
+/// # #[cfg(feature = "alloc")]
+/// # {
 /// use portal_pc_asm_common::types::value::{Constant, Bitness};
 ///
 /// let constant = Constant {
@@ -46,6 +48,7 @@ pub struct Bitness {
 ///
 /// let bitness = Bitness { log2: 6 }; // 64 bits
 /// let bytes: Vec<u8> = constant.bytes(bitness).collect();
+/// # }
 /// ```
 #[derive(PartialEq, PartialOrd, Eq, Ord, Clone, Copy)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
@@ -62,11 +65,14 @@ impl Constant {
     /// # Examples
     ///
     /// ```
+    /// # #[cfg(feature = "alloc")]
+    /// # {
     /// use portal_pc_asm_common::types::value::{Constant, Bitness};
     ///
     /// let constant = Constant { data: [0x0102030405060708, 0, 0, 0, 0, 0, 0, 0] };
     /// let bitness = Bitness { log2: 6 }; // 64 bits = 8 bytes
     /// let bytes: Vec<u8> = constant.bytes(bitness).collect();
+    /// # }
     /// ```
     pub fn bytes(&self, b: Bitness) -> impl Iterator<Item = u8> {
         self.data
@@ -83,11 +89,14 @@ impl Constant {
     /// # Examples
     ///
     /// ```
+    /// # #[cfg(feature = "alloc")]
+    /// # {
     /// use portal_pc_asm_common::types::value::{Constant, Bitness};
     ///
     /// let constant = Constant { data: [0xFF, 0, 0, 0, 0, 0, 0, 0] };
     /// let bitness = Bitness { log2: 3 }; // 8 bits
     /// let bits: Vec<bool> = constant.bits(bitness).collect();
+    /// # }
     /// ```
     pub fn bits(&self, b: Bitness) -> impl Iterator<Item = bool> {
         self.bytes(b)
