@@ -211,13 +211,13 @@ impl<G> Value<G> {
 /// use portal_pc_asm_common::types::value::{LoadStoreFrame, Value, Constant, Bitness};
 /// use portal_pc_asm_common::types::reg::Reg;
 ///
-/// let from_value = LoadStoreFrame::Value {
+/// let from_value: LoadStoreFrame<Reg> = LoadStoreFrame::Value {
 ///     bits: Bitness { log2: 6 },
 ///     val: Value { offset: Reg(0), bitness: Bitness { log2: 6 } },
 ///     bit_offset: 0,
 /// };
 ///
-/// let from_constant = LoadStoreFrame::Constant {
+/// let from_constant: LoadStoreFrame<Reg> = LoadStoreFrame::Constant {
 ///     bits: Bitness { log2: 6 },
 ///     constant: Constant { data: [42, 0, 0, 0, 0, 0, 0, 0] },
 /// };

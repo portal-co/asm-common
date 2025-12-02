@@ -151,16 +151,20 @@ impl Ratchet {
     /// use portal_pc_asm_common::ratchet::Ratchet;
     ///
     /// let mut ratchet = Ratchet::from_seed([0u8; 32]);
-    /// let marker = ratchet.next();
+    /// let marker1 = ratchet.next();
+    /// let marker2 = ratchet.next();
     ///
     /// let mut data = Vec::new();
     /// data.extend_from_slice(b"chunk1");
-    /// data.extend_from_slice(&marker);
+    /// data.extend_from_slice(&marker1);
     /// data.extend_from_slice(b"chunk2");
+    /// data.extend_from_slice(&marker2);
     ///
     /// let ratchet = Ratchet::from_seed([0u8; 32]);
     /// let chunks: Vec<&mut [u8]> = ratchet.split_mut(&mut data, None).collect();
     /// assert_eq!(chunks.len(), 2);
+    /// assert_eq!(chunks[0], b"chunk1");
+    /// assert_eq!(chunks[1], b"chunk2");
     /// # }
     /// ```
     pub fn split_mut<'a>(

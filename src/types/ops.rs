@@ -31,8 +31,8 @@ pub enum Arith {
     Sub,
     /// Multiplication operation
     ///
-    /// Results in a [`Bitness`](super::value::Bitness) doubled, or with an incremented
-    /// [`Bitness::log2`](super::value::Bitness::log2)
+    /// Results in a [`Bitness`] doubled, or with an incremented
+    /// [`Bitness::log2`]
     Mul,
     /// Division operation with specified signedness
     Div(Sign),
