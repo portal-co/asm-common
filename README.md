@@ -212,3 +212,12 @@ Some reexports in the `types` module are deprecated since version 0.1.1 and will
 - Instead of `use portal_pc_asm_common::types::*`, use `use portal_pc_asm_common::types::ops::*`
 - Access permission types via `use portal_pc_asm_common::types::perms::*`
 - Access value types via `use portal_pc_asm_common::types::value::*`
+
+## Goals
+- [ ] Add project goals
+
+## Progress
+- [ ] Initial setup
+
+---
+*AI assisted*
