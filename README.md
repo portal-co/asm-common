@@ -214,10 +214,14 @@ Some reexports in the `types` module are deprecated since version 0.1.1 and will
 - Access value types via `use portal_pc_asm_common::types::value::*`
 
 ## Goals
-- [ ] Add project goals
+- [ ] Maintain consistent common types for `asm-*` crates
+- [ ] Optimize bit-level operations for embedded use
+- [ ] Extend trait coverage for new architectures
 
 ## Progress
-- [ ] Initial setup
+- [ ] Core types implemented (Arith, Perms, Reg, Mem, Value)
+- [ ] Ratchet and Serde support available via features
+- [ ] Documentation and examples provided
 
 ---
 *AI assisted*
