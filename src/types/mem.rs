@@ -24,15 +24,21 @@ use super::*;
 #[cfg_attr(feature = "exhaust", derive(exhaust::Exhaust))]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum MemorySize {
-    /// 8-bit (byte) memory access
+    /// 8-bit (on x86, byte) memory access
     _8,
-    /// 16-bit (word) memory access
+    /// 16-bit (on x86, word) memory access
     _16,
-    /// 32-bit (double word) memory access
+    /// 32-bit (on x86, double word) memory access
     _32,
-    /// 64-bit (quad word) memory access (default)
+    /// 64-bit (on x86, quad word) memory access (default)
     #[default]
     _64,
+    /// 128-bit (on x86, octa word) memory access
+    _128,
+    /// 256-bit (on x86, 16-word) memory access
+    _256,
+    /// 512-bit (on x86, 32-word) memory access
+    _512,
 }
 
 /// A value tagged with a memory access size.
