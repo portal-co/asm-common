@@ -5,7 +5,8 @@ use super::*;
 #[repr(transparent)]
 pub struct InstCodeI4(pub u32);
 impl InstCodeI4 {
-    pub fn with(self, inst: impl Iterator<Item = Range<u32>>, val: u32) -> Self {
+    pub fn with(self, inst: impl Iterator<Item = Range<u32>>, val: impl Into<u32>) -> Self {
+        let val = val.into();
         let mut code = self.0;
         let mut len = 0;
         for r in inst {
@@ -15,7 +16,10 @@ impl InstCodeI4 {
         }
         InstCodeI4(code)
     }
-    pub fn extract(&self, list: impl Iterator<Item = Range<u32>>) -> u32 {
+    pub fn extract<T>(&self, list: impl Iterator<Item = Range<u32>>) -> T
+    where
+        u32: Into<T>,
+    {
         let mut val = 0;
         let mut len = 0;
         for r in list {
@@ -23,6 +27,6 @@ impl InstCodeI4 {
             val |= ((self.0 & mask) >> r.start) << len;
             len += r.end - r.start;
         }
-        val
+        val.into()
     }
 }

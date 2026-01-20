@@ -33,7 +33,26 @@ use super::*;
 #[cfg_attr(feature = "exhaust", derive(exhaust::Exhaust))]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct Reg(pub u8);
-
+impl From<u8> for Reg {
+    fn from(value: u8) -> Self {
+        Reg(value)
+    }
+}
+impl From<Reg> for u8 {
+    fn from(value: Reg) -> Self {
+        value.0
+    }
+}
+impl From<Reg> for u32 {
+    fn from(value: Reg) -> Self {
+        u32::from(value.0)
+    }
+}
+impl From<u32> for Reg {
+    fn from(value: u32) -> Self {
+        Reg((value & 0xff) as u8)
+    }
+}
 impl Reg {
     /// The context register (register 255).
     ///
