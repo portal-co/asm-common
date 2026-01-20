@@ -53,6 +53,16 @@ impl From<u32> for Reg {
         Reg((value & 0xff) as u8)
     }
 }
+impl From<Reg> for u64 {
+    fn from(value: Reg) -> Self {
+        u64::from(value.0)
+    }
+}
+impl From<u64> for Reg {
+    fn from(value: u64) -> Self {
+        Reg((value & 0xff) as u8)
+    }
+}
 impl Reg {
     /// The context register (register 255).
     ///
