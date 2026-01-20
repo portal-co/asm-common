@@ -26,6 +26,7 @@ pub mod perms;
 pub mod reg;
 pub mod mem;
 pub mod value;
+pub mod code;
 #[deprecated(
     note = "These reexports will be removed in the next minor release",
     since = "0.1.1"
