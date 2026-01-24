@@ -23,6 +23,7 @@ use super::*;
 #[cfg_attr(feature = "enum-map", derive(enum_map::Enum))]
 #[cfg_attr(feature = "exhaust", derive(exhaust::Exhaust))]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+#[non_exhaustive]
 pub enum MemorySize {
     /// 8-bit (on x86, byte) memory access
     _8,
