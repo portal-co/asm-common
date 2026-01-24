@@ -24,6 +24,7 @@ use super::*;
 #[cfg_attr(feature = "enum-map", derive(enum_map::Enum))]
 #[cfg_attr(feature = "exhaust", derive(exhaust::Exhaust))]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+#[non_exhaustive]
 pub enum Arith {
     /// Addition operation
     Add,
@@ -70,6 +71,7 @@ pub enum Arith {
 #[cfg_attr(feature = "enum-map", derive(enum_map::Enum))]
 #[cfg_attr(feature = "exhaust", derive(exhaust::Exhaust))]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+#[non_exhaustive]
 pub enum Sign {
     /// Unsigned (non-negative) interpretation
     Unsigned,
@@ -93,6 +95,7 @@ pub enum Sign {
 #[cfg_attr(feature = "enum-map", derive(enum_map::Enum))]
 #[cfg_attr(feature = "exhaust", derive(exhaust::Exhaust))]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+#[non_exhaustive]
 pub enum Endian {
     /// Little-endian: least significant byte first
     Little,
@@ -116,6 +119,7 @@ pub enum Endian {
 #[cfg_attr(feature = "enum-map", derive(enum_map::Enum))]
 #[cfg_attr(feature = "exhaust", derive(exhaust::Exhaust))]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+#[non_exhaustive]
 pub enum Ext {
     /// Sign extension: replicate the sign bit
     Sign,
@@ -140,6 +144,7 @@ pub enum Ext {
 #[cfg_attr(feature = "enum-map", derive(enum_map::Enum))]
 #[cfg_attr(feature = "exhaust", derive(exhaust::Exhaust))]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+#[non_exhaustive]
 pub enum Cmp {
     /// Less than or equal to (≤)
     Le(Sign),
